@@ -1,0 +1,953 @@
+/* --- CORES --- */
+:root {
+    --primary-blue: #007bff; /* Azul vibrante (pode ajustar) */
+    --secondary-green: #28a745; /* Verde vibrante (pode ajustar) */
+    --light-blue: #add8e6; /* Azul claro para detalhes/hover */
+    --light-green: #90ee90; /* Verde claro para detalhes/hover */
+    --dark-blue: #0056b3; /* Azul mais escuro para texto/fundo */
+    --dark-green: #1e7e34; /* Verde mais escuro */
+    --text-color: #333;
+    --background-light: #f8f9fa;
+    --background-white: #ffffff;
+    --border-color: #ddd;
+}
+
+/* --- BASE STYLES --- */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: var(--background-light);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+    line-height: 1.6; /* Melhorar legibilidade */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- UTILITY CLASSES --- */
+.container {
+    max-width: 1000px; /* Aumentado para melhor uso de espaço */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- HEADER --- */
+.header {
+    background: transparent; /* FUNDO TRANSPARENTE */
+    color: white;
+    padding: 25px 0; /* Aumentado o padding para mais espaço acima e abaixo do logo/menu */
+    position: absolute; /* POSIÇÃO ABSOLUTA para que ele flutue sobre o conteúdo */
+    width: 100%; /* Ocupa toda a largura */
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: none; /* Remove a sombra */
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 120px; /* Aumentado o tamanho do logo */
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.3)); /* Adiciona uma sombra sutil ao logo para destaque */
+}
+
+.header .logo-text { /* Se usar texto como logo */
+    margin: 0;
+    font-size: 2.8em; /* Tamanho do texto do logo */
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3); /* Sombra para o texto do logo */
+}
+
+/* NAV (Desktop Styles - Default) */
+nav {
+    display: flex;
+    gap: 35px; /* Espaço entre os links aumentado */
+    margin-left: auto; /* Empurra a nav para a direita, dando espaço ao logo */
+    margin-right: 40px; /* Espaço entre nav e botão */
+}
+
+nav a {
+    color: white; /* Links brancos para contraste com o fundo da hero */
+    font-weight: 500; /* Peso da fonte ajustado */
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative; /* Para a linha de hover */
+    font-size: 1.1em; /* Tamanho da fonte dos links */
+    text-shadow: 0 0 3px rgba(0,0,0,0.2); /* Sombra suave para o texto do menu */
+}
+
+nav a::after { /* Linha inferior no hover */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px; /* Linha mais grossa no hover */
+    background-color: var(--light-green); /* Verde claro no hover */
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Botão no Header */
+.btn-header {
+    background: var(--secondary-green); /* Verde para o botão */
+    padding: 12px 30px; /* Padding ajustado para o botão */
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+    white-space: nowrap; /* Evita que o texto quebre */
+    font-size: 1em; /* Tamanho da fonte do botão */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para o botão */
+}
+
+.btn-header:hover {
+    background: var(--dark-green); /* Verde mais escuro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+
+/* MENU TOGGLE (Default: Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    text-shadow: 0 0 3px rgba(0,0,0,0.2); /* Sombra para o ícone do menu */
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    background: url('../assets/images/hero_background.jpg') center center/cover no-repeat; /* Nova imagem de background para a hero */
+    height: 85vh; /* Altura ajustada para dar mais espaço, pode ajustar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden; /* Para garantir que o pseudo-elemento não transborde */
+    padding-top: 20px; /* Adiciona padding no topo para garantir que o conteúdo não seja coberto pelo header */
+}
+
+.hero::before { /* Overlay escuro na imagem de fundo */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.80); /* Escurece a imagem um pouco mais para melhor contraste */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative; /* Posiciona o conteúdo acima do overlay */
+    z-index: 2;
+    max-width: 850px; /* Mais largo para o texto */
+    padding: 40px; /* Mais padding */
+    border-radius: 10px;
+    /* Remover o background do hero-content se não quiser uma caixa sólida */
+    /* background: rgba(0, 0, 0, 0.4); */
+}
+
+.hero-content h2 {
+    font-size: 3em; /* Tamanho do título grande */
+    margin-bottom: 20px; /* Mais espaço */
+    line-height: 1.2;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Sombra para o texto do título */
+}
+
+.hero-content p {
+    font-size: 1.3em; /* Texto maior */
+    margin-bottom: 40px; /* Mais espaço */
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95; /* Más opaco */
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3); /* Sombra para o texto do parágrafo */
+}
+
+/* Botão na Hero Section */
+.btn-hero {
+    display: inline-block;
+    background: var(--secondary-green); /* Verde vibrante */
+    padding: 18px 40px; /* Mais padding para o botão da hero */
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8em; /* Botão maior */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px; /* Mais espaçamento entre letras */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Sombra para o botão */
+}
+
+.btn-hero:hover {
+    background: var(--dark-green);
+    transform: translateY(-5px); /* Mais elevação no hover */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); /* Sombra mais intensa no hover */
+}
+
+/* --- SERVICES ICONS SECTION (NEW) --- */
+.services-icons {
+    background: var(--background-white); /* Fundo branco */
+    padding: 40px 0; /* Aumentado o padding */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada e elegante */
+    position: relative;
+    z-index: 5; /* Garante que fique acima da hero se houver sobreposição */
+    margin-top: -100px; /* Ajuste para puxar mais para cima */
+    border-radius: 15px; /* Mais arredondado */
+    max-width: 1100px; /* Ajustado para ser mais largo */
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid var(--border-color); /* Borda sutil */
+}
+
+.services-icons .container {
+    display: flex; /* Mantém os itens em linha */
+    justify-content: space-around; /* Distribui os itens uniformemente */
+    /* REMOVIDO: flex-wrap: wrap; POR PADRÃO, ISSO SERÁ GERENCIADO PELAS MEDIA QUERIES */
+    gap: 20px; /* Mais espaço entre os itens */
+    padding: 0 20px; /* Adiciona padding horizontal para o container interno */
+
+    /* Novo para scroll horizontal em mobile */
+    overflow-x: auto; /* Permite scroll horizontal se o conteúdo transbordar */
+    -webkit-overflow-scrolling: touch; /* Melhor rolagem em dispositivos iOS */
+    scroll-snap-type: x mandatory; /* Ajuda a "encaixar" os itens ao rolar */
+    padding-bottom: 20px; /* Espaço para a barra de rolagem se aparecer */
+}
+
+/* Esconder a barra de rolagem (opcional, mas comum para carrosséis) */
+.services-icons .container::-webkit-scrollbar {
+    height: 8px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+.services-icons .container::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 4px;
+}
+
+.services-icons .container::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-blue);
+}
+
+.icon-item {
+    text-align: center;
+    min-width: 100px; /* Define uma largura mínima para cada item */
+    flex-shrink: 0; /* Impede que os itens encolham abaixo do min-width */
+    flex-grow: 1; /* Permite que os itens cresçam se houver espaço */
+    padding: 5px 2px; /* Ajuste do padding */
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    background-color: var(--background-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    scroll-snap-align: start; /* Para o scroll-snap-type */
+}
+
+.icon-item i {
+    font-size: 2.5em; /* Tamanho dos ícones */
+    color: var(--primary-blue); /* Cor dos ícones */
+    margin-bottom: 15px;
+}
+
+.icon-item span {
+    display: block;
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1em; /* Texto do ícone ligeiramente maior */
+}
+
+.icon-item:hover {
+    transform: translateY(-10px); /* Efeito de elevação */
+    color: var(--secondary-green); /* Mudar cor no hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra mais intensa no hover */
+}
+
+.icon-item:hover i {
+    color: var(--secondary-green); /* Ícone também muda de cor */
+}
+
+/* --- GENERAL SECTION STYLES --- */
+.section {
+    padding: 80px 20px; /* Mais padding para seções */
+    max-width: 1200px; /* Consistente com o container */
+    margin: 40px auto; /* Espaço maior entre as seções */
+    background-color: var(--background-white);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08); /* Sombra mais suave */
+    border-radius: 10px;
+}
+
+.section-title { /* Nova classe para títulos de seção */
+    text-align: center;
+    color: var(--dark-blue);
+    font-size: 2.8em;
+    margin-bottom: 50px;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px; /* Linha um pouco maior */
+    height: 5px; /* Mais grossa */
+    background-color: var(--secondary-green); /* Verde para a linha */
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+/* --- GRID LAYOUT (for Services/Categories) --- */
+.grid { /* ESTA REGRA 'grid' DEVE SER APLICADA AO CONTÊINER DOS CARDS, NÃO À SECTION */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cards um pouco maiores */
+    gap: 30px; /* Espaço maior entre os cards */
+}
+
+
+.grid-container-for-cards { /* Esta classe é a mesma que .grid, mas mantida para clareza da explicação anterior */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cards um pouco maiores */
+    gap: 30px; /* Espaço maior entre os cards */
+    margin-top: 50px; /* Adicione um espaço entre o parágrafo e os cards, se necessário */
+}
+
+.card {
+    background: var(--background-light); /* Fundo dos cards mais claro */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra mais suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 1px solid var(--border-color); /* Borda suave */
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Sombra mais intensa no hover */
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    height: 200px; /* Altura fixa para as imagens dos cards */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+.card h3 {
+    color: var(--primary-blue); /* Cor do título do card */
+    font-size: 1.8em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* --- CASES SECTION - CAROUSEL STYLES --- */
+.carousel-container {
+    position: relative;
+    width: 95%; /* Aumenta a largura para ocupar mais espaço */
+    max-width: 1200px; /* Aumenta a largura máxima do carrossel */
+    margin: 50px auto 0; /* Centraliza e adiciona espaço */
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: var(--background-white);
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.8s ease-in-out; /* Transição mais lenta e suave */
+    /* width: calc(300% + 60px); REMOVIDO: largura agora gerenciada por JS */
+}
+
+.carousel-slide img {
+    width: calc(33.333% - 20px); /* Aproximadamente 1/3 da largura com margem */
+    height: 400px; /* Altura fixa para as imagens do carrossel */
+    object-fit: cover; /* Garante que as imagens cubram a área sem distorcer */
+    flex-shrink: 0; /* Impede que as imagens encolham */
+    margin-right: 20px; /* Adiciona uma margem entre as imagens */
+    border-radius: 15px; /* Arredondamento para as imagens */
+}
+
+.carousel-slide img:last-child {
+    margin-right: 0; /* Remove a margem da última imagem */
+}
+
+/* Estilos para os indicadores (botões no meio inferior) */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-color: var(--light-green);
+}
+
+.carousel-indicator:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* --- ORCAMENTO FORM (Modernizado) --- */
+.orcamento {
+    background: var(--background-white); /* Fundo branco para combinar mais */
+    padding: 50px 30px;
+    max-width: 700px;
+    margin: 60px auto;
+    border-radius: 12px;
+    color: var(--text-color); /* Cor do texto principal */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Sombra mais moderna e pronunciada */
+    border: 1px solid var(--border-color); /* Borda sutil */
+}
+
+.orcamento h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: 700;
+    color: var(--dark-blue); /* Título em azul escuro */
+    font-size: 2.5em;
+    position: relative;
+}
+
+.orcamento h2::after { /* Linha verde abaixo do título do formulário */
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--light-green); /* Verde claro */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.orcamento form input,
+.orcamento form textarea {
+    width: 100%;
+    padding: 14px 18px; /* Mais padding */
+    margin-bottom: 18px;
+    border: 1px solid var(--border-color); /* Adicionar borda leve nos campos */
+    border-radius: 10px;
+    font-size: 1.05rem;
+    box-sizing: border-box;
+    background-color: var(--background-light); /* Fundo dos campos mais claro */
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição para foco */
+}
+
+.orcamento form input:focus,
+.orcamento form textarea:focus {
+    border-color: var(--primary-blue); /* Borda azul no foco */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); /* Sombra suave no foco */
+}
+
+.orcamento .row {
+    display: flex;
+    gap: 20px; /* Mais espaço entre os campos na linha */
+    margin-bottom: 18px; /* Para manter o espaçamento consistente */
+}
+
+.orcamento .row input {
+    flex: 1;
+    margin-bottom: 0; /* Remove margem inferior para inputs dentro da row */
+}
+
+.orcamento form textarea {
+    resize: vertical;
+    min-height: 120px; /* Altura mínima maior */
+}
+
+.orcamento form button {
+    background: var(--secondary-green); /* Verde para o botão de envio */
+    border: none;
+    padding: 16px; /* Mais padding */
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.orcamento form button:hover {
+    background: var(--dark-green); /* Verde mais escuro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#statusOrcamento {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+    /* As cores de sucesso/erro (verde/vermelho) são definidas via JavaScript,
+       então o estilo base aqui pode ser neutro ou simplesmente não definido. */
+}
+
+
+/* --- SEÇÃO "SOBRE" (About Us) --- */
+.section#sobre .text-content h2 { /* Seletor mais específico para o H2 do sobre */
+    color: var(--dark-blue);
+}
+.section#sobre .text-content h2::after {
+    background-color: var(--secondary-green); /* Verde para a linha do título sobre */
+}
+
+.section#sobre .text-content h3 {
+    color: var(--primary-blue); /* Azul para subtítulos na seção sobre */
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.section#sobre .text-content p {
+    margin-bottom: 20px;
+    text-align: justify;
+    font-size: 1.05em;
+    color: #555;
+}
+
+.section#sobre .text-content .btn-primary { /* Estilo para o botão "Faça seu Orçamento" na seção Sobre */
+    display: inline-block;
+    background: var(--primary-blue); /* Azul principal */
+    padding: 12px 28px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 15px;
+}
+
+.section#sobre .text-content .btn-primary:hover {
+    background: var(--dark-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- LAYOUT LADO A LADO PARA A SEÇÃO 'SOBRE' --- */
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 60px; /* Mais espaço entre texto e imagem */
+}
+
+.text-content {
+    flex: 2;
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px; /* Más arredondado */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18); /* Sombra mais pronunciada */
+    transition: transform 0.3s ease;
+}
+
+.image-content img:hover {
+    transform: scale(1.03); /* Leve zoom no hover */
+}
+
+/* --- FOOTER SECTION (NEW) --- */
+.main-footer {
+    background: var(--dark-blue); /* Fundo azul escuro */
+    color: white;
+    padding: 50px 0 20px; /* Mais padding no topo para espaço */
+    font-size: 0.95em;
+}
+
+.main-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinha os itens ao topo */
+    gap: 30px; /* Espaço entre as colunas do footer */
+}
+
+.main-footer .footer-logo,
+.main-footer .footer-social,
+.main-footer .footer-contact,
+.main-footer .footer-copyright {
+    flex: 1; /* Permite que os blocos cresçam e encolham */
+    min-width: 250px; /* Largura mínima para os blocos */
+    margin-bottom: 20px; /* Espaço entre as linhas em telas pequenas */
+}
+
+.main-footer .footer-logo {
+    display: flex;
+    justify-content: center; /* Centraliza o logo no bloco */
+    align-items: center;
+    min-width: 150px; /* Menor min-width para o logo */
+    flex: 0.8; /* O logo pode ser um pouco menor que os outros blocos */
+}
+
+.main-footer .footer-logo img {
+    max-width: 180px; /* Tamanho máximo do logo */
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.3)); /* Sombra para o logo no footer */
+}
+
+.main-footer h3 {
+    color: var(--light-green); /* Títulos em verde claro */
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.main-footer .social-links-footer {
+    display: flex;
+    gap: 15px; /* Espaço entre os ícones */
+    justify-content: flex-start; /* Alinha os ícones à esquerda */
+}
+
+.main-footer .social-links-footer a {
+    color: white;
+    font-size: 1.8em; /* Tamanho dos ícones sociais */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.main-footer .social-links-footer a:hover {
+    color: var(--secondary-green); /* Mudar cor no hover */
+    transform: translateY(-3px); /* Efeito de elevação */
+}
+
+.main-footer .footer-contact p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.main-footer .footer-contact p i {
+    margin-right: 10px;
+    color: var(--light-blue); /* Ícones de contato em azul claro */
+    font-size: 1.1em;
+}
+
+.main-footer .footer-copyright {
+    flex-basis: 100%; /* Ocupa toda a largura para centralizar */
+    text-align: center;
+    margin-top: 30px; /* Espaço acima do copyright */
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória */
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* --- Media Queries for Footer --- */
+@media (max-width: 768px) {
+    .main-footer .container {
+        flex-direction: column; /* Empilha os blocos do footer em mobile */
+        align-items: center; /* Centraliza os blocos */
+        text-align: center;
+    }
+
+    .main-footer .footer-logo,
+    .main-footer .footer-social,
+    .main-footer .footer-contact,
+    .main-footer .footer-copyright {
+        min-width: unset; /* Remove o min-width para maior flexibilidade */
+        width: 100%; /* Ocupa toda a largura disponível */
+        margin-bottom: 30px; /* Mais espaço entre blocos empilhados */
+    }
+
+    .main-footer .footer-logo {
+        margin-bottom: 40px; /* Mais espaço abaixo do logo */
+    }
+
+    .main-footer .footer-social .social-links-footer {
+        justify-content: center; /* Centraliza os ícones sociais em mobile */
+    }
+}
+
+
+/* --- MEDIA QUERIES (RESPONSIVIDADE) --- */
+
+/* MOBILE MENU & HEADER ADJUSTMENTS */
+@media (max-width: 992px) { /* Ajuste o breakpoint para o menu mobile */
+    .header .btn-header {
+        display: none; /* Esconde o botão de orçamento no mobile header */
+    }
+
+    .header .container {
+        justify-content: space-between;
+    }
+
+    nav {
+        /* Para o menu mobile, ele ainda precisa de um background */
+        background: rgba(0, 86, 179, 0.95); /* Um azul escuro semi-transparente para o menu mobile */
+        /* Outros estilos permanecem os mesmos */
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100px; /* Ajuste a posição para baixo do header transparente */
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        margin-right: 0; /* Remove margem extra */
+    }
+    nav a {
+        margin: 10px 0;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    nav a:last-child {
+        border-bottom: none;
+    }
+    nav.show {
+        display: flex;
+    }
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    /* Hero Section para Mobile */
+    .hero {
+        height: 70vh; /* Altura um pouco menor */
+        padding-top: 80px; /* Ajuste o padding-top para o mobile */
+    }
+    .hero-content h2 {
+        font-size: 2.5em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
+    .btn-hero {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    /* Services Icons para Mobile (AQUI ESTÁ A MAIORIA DAS ALTERAÇÕES) */
+    .services-icons {
+        margin-top: -50px; /* Ajuste para não sobrepor tanto */
+        padding: 20px 0;
+    }
+    .services-icons .container {
+        /* NÃO MAIS flex-direction: column; AQUI */
+        /* Efeitos de scroll horizontal já aplicados na regra principal */
+        justify-content: flex-start; /* Alinha o início dos itens para o scroll */
+        gap: 20px; /* Menos espaço em mobile */
+        /* O overflow-x: auto já está na regra principal, tornando-o padrao para mobile */
+    }
+    .icon-item {
+        min-width: 140px; /* Reduz a largura mínima para mobile */
+        /* flex: 1 1 100%; foi removido aqui para permitir o scroll */
+        padding: 10px;
+    }
+    .icon-item i {
+        font-size: 3em;
+    }
+    .icon-item span {
+        font-size: 0.9em;
+    }
+
+    /* SOBRE SECTION ADJUSTMENTS */
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    .text-content,
+    .image-content {
+        flex: unset;
+        width: 100%;
+        padding: 0;
+    }
+    .image-content {
+        margin-top: 20px;
+    }
+    .section#sobre .text-content h3 {
+        font-size: 1.8em;
+    }
+
+    /* Grid de Cards */
+    .grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+    .card {
+        padding: 20px;
+    }
+    .card img {
+        height: 180px;
+    }
+
+    /* Carousel adjustments for mobile */
+    .carousel-container {
+        width: 95%; /* Ocupa mais largura em mobile */
+        margin-top: 30px;
+    }
+    .carousel-slide img {
+        height: 250px; /* Altura menor para imagens do carrossel em mobile */
+        width: calc(100% - 20px); /* Ajusta para 1 imagem por vez em mobile */
+        margin-right: 20px;
+    }
+
+
+    /* Formulário de Orçamento */
+    .orcamento {
+        padding: 40px 25px;
+        margin: 40px auto;
+    }
+    .orcamento h2 {
+        font-size: 2em;
+    }
+    .orcamento .row {
+        flex-direction: column; /* Empilha os inputs da linha */
+        gap: 0;
+    }
+    .orcamento .row input {
+        margin-bottom: 15px; /* Adiciona margem entre os inputs empilhados */
+    }
+    .orcamento form button {
+        font-size: 1.1em;
+        padding: 14px;
+    }
+}
+
+/* MEDIA QUERIES PARA RESPONSIVIDADE EM TELAS MAIORES (DESKTOP) */
+@media (min-width: 993px) {
+    .services-icons .container {
+        flex-wrap: wrap; /* Em telas maiores, permite que quebrem linha para preencher o espaço */
+        justify-content: center; /* Centraliza os itens quando há espaço para vários */
+        overflow-x: visible; /* Remove o scroll horizontal em desktop */
+        scroll-snap-type: none;
+        padding-bottom: 0; /* Remove padding extra da barra de rolagem */
+    }
+
+    .icon-item {
+        flex: 0 1 180px; /* Permite um pouco mais de flexibilidade em desktop */
+        max-width: 180px; /* Defina uma largura máxima para não ficarem muito grandes */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.2em;
+    }
+    .section-title::after {
+        width: 60px;
+        height: 4px;
+    }
+    .orcamento h2 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .section {
+        padding: 40px 15px;
+    }
+
+    .header .logo img {
+        height: 50px; /* Ajuste o tamanho do logo para mobile, de 35px para 50px */
+    }
+    .header .logo-text {
+        font-size: 2.2em; /* Ajuste o tamanho do texto do logo para mobile, de 1.8em para 2.2em */
+    }
+    .menu-toggle {
+        font-size: 26px;
+    }
+
+    .hero-content h2 {
+        font-size: 2em;
+    }
+    .hero-content p {
+        font-size: 0.9em;
+    }
+
+    .services-icons {
+        margin-top: -30px; /* Ajuste final de sobreposição */
+        padding: 15px 0;
+    }
+    .services-icons .container {
+        gap: 15px; /* Menos espaço em telas muito pequenas */
+    }
+    .icon-item {
+        min-width: 120px; /* Largura mínima menor para celulares pequenos */
+        padding: 15px 10px;
+    }
+    .icon-item i {
+        font-size: 2.5em;
+    }
+    .icon-item span {
+        font-size: 0.8em;
+    }
+
+    /* Carousel adjustments for very small screens */
+    .carousel-slide img {
+        height: 200px; /* Ainda menor para telas muito pequenas */
+    }
+
+    footer .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    footer p {
+        text-align: center;
+    }
+    .social-links {
+        margin-top: 10px;
+    }
+    .social-links a {
+        margin: 0 8px;
+    }
+}
