@@ -63,7 +63,7 @@
             <div class="content-wrapper">
                 <div class="text-content">
                     <h2>A MoveUp</h2> 
-                    <h3>Impulsionando a saúde e o bem-Estar nas empresas</h3>
+                    <h3>Impulsionando a saúde e o bem-estar nas empresas</h3>
                     <p>A MoveUp é especialista em ginástica laboral, levando saúde e produtividade ao ambiente corporativo. Oferecemos soluções personalizadas que promovem bem-estar, reduzem o estresse e previnem lesões, melhorando a qualidade de vida dos colaboradores e impulsionando os resultados do seu negócio. Invista na saúde da sua equipe com a MoveUp!</p>
                     <a href="#orcamento" class="btn-primary">Faça seu orçamento</a>
                 </div>
@@ -134,19 +134,17 @@
             <input type="text" name="nome" placeholder="Nome" required />
             <input type="email" name="email" placeholder="E-mail" required />
             <input type="tel" name="telefone" placeholder="Telefone" required />
-            
             <div class="row">
                 <input type="text" name="empresa" placeholder="Nome da Empresa" required />
                 <input type="text" name="segmento" placeholder="Segmento da Empresa" required />
             </div>
-            
             <div class="row">
                 <input type="number" name="quantidade" placeholder="Quantidade de Funcionários" required />
                 <input type="text" name="cidade" placeholder="Cidade" required />
             </div>
-            
             <textarea name="necessidade" placeholder="Descreva aqui sua necessidade" required></textarea>
-            
+            <!-- Honeypot para proteção contra spam -->
+            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
             <button type="submit">Enviar</button>
         </form>
         <p id="statusOrcamento"></p>
@@ -160,16 +158,16 @@
         <div class="footer-social">
             <h3>Siga-nos nas redes sociais</h3>
             <div class="social-links-footer">
-                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#inicio" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/moveup.laboral" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#inicio" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#inicio" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
         </div>
         <div class="footer-contact">
             <h3>Contato</h3>
             <p><i class="fas fa-phone-alt"></i> (11) 98765-4321</p>
-            <p><i class="fas fa-envelope"></i> contato@suaempresa.com.br</p>
+            <p><i class="fas fa-envelope"></i> contato@moveuplaboral.com.br</p>
             <p><i class="fas fa-map-marker-alt"></i>Cotia - SP</p>
         </div>
         <div class="footer-copyright">
@@ -180,6 +178,7 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="js/script.js"></script>
+    
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <a href="https://wa.me/5511953234369?text=Adorei%20seu%20artigo" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;z-index:1000;" target="_blank">
