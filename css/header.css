@@ -1,0 +1,212 @@
+/* --- HEADER & MENU --- */
+/* Inclua aqui os estilos do header, logo, menu, menu-toggle e nav */
+
+/* --- HEADER --- */
+.header {
+    background: transparent; /* FUNDO TRANSPARENTE */
+    color: white;
+    padding: 25px 0; /* Aumentado o padding para mais espaço acima e abaixo do logo/menu */
+    position: absolute; /* POSIÇÃO ABSOLUTA para que ele flutue sobre o conteúdo */
+    width: 100%; /* Ocupa toda a largura */
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: none; /* Remove a sombra */
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.header .logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 0;
+}
+
+.header .logo:hover::before {
+    opacity: 1;
+}
+
+.header .logo img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: border-radius 0.3s;
+}
+
+.header .logo:hover img {
+    border-radius: 20px;
+}
+
+.header .logo-text { /* Se usar texto como logo */
+    margin: 0;
+    font-size: 2.8em; /* Tamanho do texto do logo */
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3); /* Sombra para o texto do logo */
+}
+
+/* NAV (Desktop Styles - Default) */
+nav {
+    display: flex;
+    gap: 35px; /* Espaço entre os links aumentado */
+    margin-left: auto; /* Empurra a nav para a direita, dando espaço ao logo */
+    margin-right: 40px; /* Espaço entre nav e botão */
+}
+
+nav a {
+    color: white; /* Links brancos para contraste com o fundo da hero */
+    font-weight: 500; /* Peso da fonte ajustado */
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative; /* Para a linha de hover */
+    font-size: 1.1em; /* Tamanho da fonte dos links */
+    text-shadow: 0 0 3px rgba(0,0,0,0.2); /* Sombra suave para o texto do menu */
+}
+
+nav a::after { /* Linha inferior no hover */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px; /* Linha mais grossa no hover */
+    background-color: var(--light-green); /* Verde claro no hover */
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Botão no Header */
+.btn-header {
+    background: var(--secondary-green); /* Verde para o botão */
+    padding: 12px 30px; /* Padding ajustado para o botão */
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+    white-space: nowrap; /* Evita que o texto quebre */
+    font-size: 1em; /* Tamanho da fonte do botão */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para o botão */
+}
+
+.btn-header:hover {
+    background: var(--dark-green); /* Verde mais escuro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* MENU TOGGLE (Default: Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    text-shadow: 0 0 3px rgba(0,0,0,0.2); /* Sombra para o ícone do menu */
+}
+
+/* MEDIA QUERIES PARA HEADER E MENU */
+@media (max-width: 992px) {
+    .header .btn-header {
+        display: none;
+    }
+    .header .container {
+        justify-content: space-between;
+    }
+    nav {
+        background: rgba(0, 86, 179, 0.95);
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        margin-right: 0;
+    }
+    nav a {
+        margin: 10px 0;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    nav a:last-child {
+        border-bottom: none;
+    }
+    nav.show {
+        display: flex;
+    }
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+    .header .logo {
+        width: 80px;
+        height: 80px;
+    }
+    .header .logo img {
+        height: 80px;
+    }
+    .header .logo-text {
+        font-size: 2.2em;
+    }
+    .menu-toggle {
+        font-size: 26px;
+        align-self: center;
+        margin: 0;
+        padding: 0;
+    }
+    .header .container {
+        align-items: center;
+    }
+}
+@media (max-width: 576px) {
+    .header .logo {
+        width: 80px;
+        height: 80px;
+    }
+    .header .logo img {
+        height: 80px;
+    }
+    .header .logo-text {
+        font-size: 2.2em;
+    }
+    .menu-toggle {
+        font-size: 26px;
+        align-self: center;
+        margin: 0;
+        padding: 0;
+    }
+    .header .container {
+        align-items: center;
+    }
+    .header .logo::before {
+        background: none !important;
+    }
+}

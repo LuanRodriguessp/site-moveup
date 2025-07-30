@@ -35,133 +35,7 @@ a {
 }
 
 /* --- HEADER --- */
-.header {
-    background: transparent; /* FUNDO TRANSPARENTE */
-    color: white;
-    padding: 25px 0; /* Aumentado o padding para mais espaço acima e abaixo do logo/menu */
-    position: absolute; /* POSIÇÃO ABSOLUTA para que ele flutue sobre o conteúdo */
-    width: 100%; /* Ocupa toda a largura */
-    top: 0;
-    left: 0;
-    z-index: 100;
-    box-shadow: none; /* Remove a sombra */
-}
-
-.header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header .logo {
-    display: inline-block;
-    position: relative;
-    width: 150px;
-    height: 150px;
-}
-
-.header .logo::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: none;
-    opacity: 0;
-    transition: opacity 0.4s;
-    z-index: 0;
-}
-
-.header .logo:hover::before {
-    opacity: 1;
-}
-
-.header .logo img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 12px;
-    transition: border-radius 0.3s;
-}
-
-.header .logo:hover img {
-    border-radius: 20px;
-}
-
-.header .logo-text { /* Se usar texto como logo */
-    margin: 0;
-    font-size: 2.8em; /* Tamanho do texto do logo */
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(0,0,0,0.3); /* Sombra para o texto do logo */
-}
-
-/* NAV (Desktop Styles - Default) */
-nav {
-    display: flex;
-    gap: 35px; /* Espaço entre os links aumentado */
-    margin-left: auto; /* Empurra a nav para a direita, dando espaço ao logo */
-    margin-right: 40px; /* Espaço entre nav e botão */
-}
-
-nav a {
-    color: white; /* Links brancos para contraste com o fundo da hero */
-    font-weight: 500; /* Peso da fonte ajustado */
-    transition: color 0.3s ease;
-    padding: 5px 0;
-    position: relative; /* Para a linha de hover */
-    font-size: 1.1em; /* Tamanho da fonte dos links */
-    text-shadow: 0 0 3px rgba(0,0,0,0.2); /* Sombra suave para o texto do menu */
-}
-
-nav a::after { /* Linha inferior no hover */
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px; /* Linha mais grossa no hover */
-    background-color: var(--light-green); /* Verde claro no hover */
-    transition: width 0.3s ease;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* Botão no Header */
-.btn-header {
-    background: var(--secondary-green); /* Verde para o botão */
-    padding: 12px 30px; /* Padding ajustado para o botão */
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.3s ease;
-    white-space: nowrap; /* Evita que o texto quebre */
-    font-size: 1em; /* Tamanho da fonte do botão */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para o botão */
-}
-
-.btn-header:hover {
-    background: var(--dark-green); /* Verde mais escuro no hover */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-
-/* MENU TOGGLE (Default: Hidden on Desktop) */
-.menu-toggle {
-    display: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: white;
-    text-shadow: 0 0 3px rgba(0,0,0,0.2); /* Sombra para o ícone do menu */
-}
+/* --- HEADER, NAV, BTN-HEADER, MENU-TOGGLE E MEDIA QUERIES MIGRADOS PARA header.css --- */
 
 /* --- HERO SECTION --- */
 .hero {
@@ -349,10 +223,11 @@ nav a:hover::after {
 }
 
 /* --- GRID LAYOUT (for Services/Categories) --- */
-.grid { /* ESTA REGRA 'grid' DEVE SER APLICADA AO CONTÊINER DOS CARDS, NÃO À SECTION */
+.grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cards um pouco maiores */
     gap: 30px; /* Espaço maior entre os cards */
+    justify-content: center; /* Centraliza os itens na grid */
 }
 
 
@@ -462,103 +337,7 @@ nav a:hover::after {
 }
 
 
-/* --- ORCAMENTO FORM (Modernizado) --- */
-.orcamento {
-    background: var(--background-white); /* Fundo branco para combinar mais */
-    padding: 50px 30px;
-    max-width: 700px;
-    margin: 60px auto;
-    border-radius: 12px;
-    color: var(--text-color); /* Cor do texto principal */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Sombra mais moderna e pronunciada */
-    border: 1px solid var(--border-color); /* Borda sutil */
-}
-
-.orcamento h2 {
-    text-align: center;
-    margin-bottom: 35px;
-    font-weight: 700;
-    color: var(--dark-blue); /* Título em azul escuro */
-    font-size: 2.5em;
-    position: relative;
-}
-
-.orcamento h2::after { /* Linha verde abaixo do título do formulário */
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: var(--light-green); /* Verde claro */
-    margin: 10px auto 0;
-    border-radius: 2px;
-}
-
-.orcamento form input,
-.orcamento form textarea {
-    width: 100%;
-    padding: 14px 18px; /* Mais padding */
-    margin-bottom: 18px;
-    border: 1px solid var(--border-color); /* Adicionar borda leve nos campos */
-    border-radius: 10px;
-    font-size: 1.05rem;
-    box-sizing: border-box;
-    background-color: var(--background-light); /* Fundo dos campos mais claro */
-    color: var(--text-color);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição para foco */
-}
-
-.orcamento form input:focus,
-.orcamento form textarea:focus {
-    border-color: var(--primary-blue); /* Borda azul no foco */
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); /* Sombra suave no foco */
-}
-
-.orcamento .row {
-    display: flex;
-    gap: 20px; /* Mais espaço entre os campos na linha */
-    margin-bottom: 18px; /* Para manter o espaçamento consistente */
-}
-
-.orcamento .row input {
-    flex: 1;
-    margin-bottom: 0; /* Remove margem inferior para inputs dentro da row */
-}
-
-.orcamento form textarea {
-    resize: vertical;
-    min-height: 120px; /* Altura mínima maior */
-}
-
-.orcamento form button {
-    background: var(--secondary-green); /* Verde para o botão de envio */
-    border: none;
-    padding: 16px; /* Mais padding */
-    border-radius: 10px;
-    width: 100%;
-    font-size: 1.2rem;
-    color: white;
-    cursor: pointer;
-    font-weight: 700;
-    transition: background 0.3s ease, transform 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.orcamento form button:hover {
-    background: var(--dark-green); /* Verde mais escuro no hover */
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-#statusOrcamento {
-    margin-top: 20px;
-    text-align: center;
-    font-weight: 600;
-    /* As cores de sucesso/erro (verde/vermelho) são definidas via JavaScript,
-       então o estilo base aqui pode ser neutro ou simplesmente não definido. */
-}
-
+/* --- ORCAMENTO FORM, CAROUSEL E FOOTER MIGRADOS PARA SEUS ARQUIVOS CSS TEMÁTICOS --- */
 
 /* --- SEÇÃO "SOBRE" (About Us) --- */
 .section#sobre .text-content h2 { /* Seletor mais específico para o H2 do sobre */
@@ -998,4 +777,20 @@ nav a:hover::after {
     .header .logo::before {
         background: none !important;
     }
+}
+
+/* --- CENTRALIZAÇÃO DOS DOIS ÚLTIMOS CARDS DA GRID DE SERVIÇOS QUANDO HOUVER 5 ITENS --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cards um pouco maiores */
+    gap: 30px; /* Espaço maior entre os cards */
+    justify-content: center; /* Centraliza os itens na grid */
+}
+
+/* Centraliza os dois últimos cards quando houver 5 serviços */
+.grid > .card:nth-child(5) {
+    grid-column: 2;
+}
+.grid > .card:nth-child(6) {
+    grid-column: 3;
 }
